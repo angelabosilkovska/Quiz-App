@@ -3,7 +3,7 @@
   <b-jumbotron>
 
     <template slot="lead" v-if="currentQuestion">
-      {{ currentQuestion.questions }}
+      {{ currentQuestion.question }}
     </template>
 
     <hr class="my-4">
