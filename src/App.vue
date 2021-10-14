@@ -52,6 +52,8 @@ export default {
 }
 </script>
 
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
