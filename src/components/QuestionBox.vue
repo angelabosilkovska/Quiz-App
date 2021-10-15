@@ -1,6 +1,6 @@
 <template>
   <div class="question-box-container">
-  <b-jumbotron border-variant="dark">
+  <b-jumbotron >
 
     <template slot="lead" v-if="currentQuestion">
       {{ currentQuestion.question }}
@@ -10,7 +10,7 @@
 
     <b-list-group>
       <b-list-group-item
-      v-for="(answer, index) in answers" 
+      v-for="(answer, index) in shuffledAnswers" 
       :key="index"
       @click="selectAnswer(index)"
       :class="[ selectedIndex === index ? 'selected' : '' ]"
@@ -19,8 +19,8 @@
         </b-list-group-item>
      </b-list-group>
 
-    <b-button variant="primary" href="#">Submit</b-button>
-    <b-button @click="next" variant="success" href="#">Next</b-button>
+    <b-button  variant="primary" href="#">Submit</b-button>
+    <b-button  @click="next" variant="success" href="#">Next</b-button>
   </b-jumbotron>
 </div>
 </template>
@@ -68,7 +68,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .list-group {
   margin-bottom: 15px;
 }
