@@ -16,6 +16,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.nav-tabs{
+margin-top: 0px;  
+margin-bottom: 25px;
+}
 </style>

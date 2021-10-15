@@ -1,6 +1,6 @@
 <template>
-  <div class="question-box-container">
-  <b-jumbotron >
+  <div>
+  <b-jumbotron>
 
     <template slot="lead" v-if="currentQuestion">
       {{ currentQuestion.question }}
@@ -28,6 +28,7 @@
       </b-button>
     <b-button  @click="next" variant="success">Next</b-button>
   </b-jumbotron>
+
 </div>
 </template>
 
