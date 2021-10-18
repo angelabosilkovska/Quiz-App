@@ -10,7 +10,7 @@
 
     <b-list-group>
       <b-list-group-item
-      v-for="(answer, index) in shuffledAnswers" 
+      v-for="(answer, index) in shuffledAnswers"
       :key="index"
       @click="selectAnswer(index)"
       :class="answerClass(index)"
@@ -20,11 +20,11 @@
      </b-list-group>
 
     <b-button
-    @click="submitAnswer && showScore" 
+    @click="submitAnswer() && showScore() "
     variant="primary"
-    :disabled="selectedIndex === null || answered" 
+    :disabled="selectedIndex === null || answered"
     >
-      Submit 
+      Submit
       </b-button>
     <b-button  @click="next" variant="success">Next</b-button>
   </b-jumbotron>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import _, { method } from 'lodash'
+import _ from 'lodash'
 
 export default {
     props: {
@@ -98,7 +98,7 @@ export default {
       return answerClass
     }
 
-  }  
+  }
 }
 </script>
 

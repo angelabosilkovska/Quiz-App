@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header 
+    <Header
     :numCorrect="numCorrect"
     :numTotal="numTotal"
     />
@@ -8,19 +8,22 @@
     <b-container class="bv-example-row">
     <b-row>
     <b-col sm="6" offset=3>
-     <QuestionBox 
-      v-if="questions.length"
-      :currentQuestion="questions[index]" 
+     <QuestionBox
+      v-if="!showScore"
+      :currentQuestion="questions[index]"
       :next="next"
       :increment="increment"
      />
-     <Score 
-     v-show="showScore"
+     <Score
+     v-else
+     :numCorrect="numCorrect"
+     :numTotal="numTotal"
+     :playagain="playagain"
      />
     </b-col>
     </b-row>
     </b-container>
-    
+
   </div>
 </template>
 
@@ -36,6 +39,15 @@ export default {
     QuestionBox,
     Score
   },
+  computed:{
+    showScore(){
+      if (this.index === this.questions.length) {
+        return true
+      }else{
+        return false
+      }
+    }
+  },
   data() {
     return {
       questions: [],
@@ -45,26 +57,14 @@ export default {
     }
   },
   methods: {
-    next() {
-      this.index++
+    playagain(type){
+      this.fetchQuestions(type)
+      this.index= 0;
+      this.numCorrect= 0;
+      this.numTotal= 0;
     },
-    increment(isCorrect){
-      if (isCorrect){
-      this.numCorrect++
-    }
-    this.numTotal++
-    },
-    showScore(){
-      let isShowing = false
-    
-      if (this.index === this.questions.length ) {
-
-        isShowing = true
-      }
-    }
-  },
-  mounted: function() {
-    fetch('https://opentdb.com/api.php?amount=10&category=27&type=multiple', {
+   async fetchQuestions(type){
+    await fetch(`https://opentdb.com/api.php?amount=10&category=${type}&type=multiple`, {
       method: 'get'
     })
     .then((response) => {
@@ -72,13 +72,26 @@ export default {
     })
     .then((jsonData) => {
       this.questions = jsonData.results
+      console.log('prasanja',this.questions);
     })
+    },
+    next() {
+      this.index++
+      console.log(this.index);
+      console.log(this.showScore);
+    },
+    increment(isCorrect){
+      if (isCorrect){
+      this.numCorrect++
+    }
+     this.numTotal++
+    }
+  },
+  mounted: function() {
+      this.fetchQuestions(21)
   }
 }
 </script>
-
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
