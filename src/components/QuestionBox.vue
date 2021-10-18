@@ -19,12 +19,12 @@
         </b-list-group-item>
      </b-list-group>
 
-    <b-button  
-    @click="submitAnswer" 
+    <b-button
+    @click="submitAnswer && showScore" 
     variant="primary"
-    :disabled="selectedIndex === null || answered"
+    :disabled="selectedIndex === null || answered" 
     >
-      Submit
+      Submit 
       </b-button>
     <b-button  @click="next" variant="success">Next</b-button>
   </b-jumbotron>
@@ -33,13 +33,14 @@
 </template>
 
 <script>
-import _ from 'lodash'
+import _, { method } from 'lodash'
 
 export default {
     props: {
         currentQuestion: Object,
         next: Function,
-        increment: Function
+        increment: Function,
+        showScore: Function
     },
     data: function() {
         return {
@@ -54,7 +55,7 @@ export default {
             let answers = [...this.currentQuestion.incorrect_answers]
             answers.push(this.currentQuestion.correct_answer)
             return answers
-        }
+        },
     },
     watch: {
       currentQuestion: {
@@ -96,6 +97,7 @@ export default {
       }
       return answerClass
     }
+
   }  
 }
 </script>

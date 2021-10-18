@@ -14,6 +14,9 @@
       :next="next"
       :increment="increment"
      />
+     <Score 
+     v-show="showScore"
+     />
     </b-col>
     </b-row>
     </b-container>
@@ -24,19 +27,21 @@
 <script>
 import Header from './components/Header.vue'
 import QuestionBox from './components/QuestionBox.vue'
+import Score from './components/Score.vue'
 
 export default {
   name: 'App',
   components: {
     Header,
-    QuestionBox
+    QuestionBox,
+    Score
   },
   data() {
     return {
       questions: [],
       index: 0,
       numCorrect: 0,
-      numTotal: 0
+      numTotal: 0,
     }
   },
   methods: {
@@ -48,6 +53,14 @@ export default {
       this.numCorrect++
     }
     this.numTotal++
+    },
+    showScore(){
+      let isShowing = false
+    
+      if (this.index === this.questions.length ) {
+
+        isShowing = true
+      }
     }
   },
   mounted: function() {
