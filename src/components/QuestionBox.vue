@@ -26,7 +26,7 @@
     >
       Submit
       </b-button>
-    <b-button  @click="next" variant="success">Next</b-button>
+    <b-button  @click="next" :disabled="selectedIndex === null" variant="success">Next</b-button>
   </b-jumbotron>
 
 </div>

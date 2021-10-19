@@ -43,7 +43,8 @@ export default {
     showScore(){
       if (this.index === this.questions.length) {
         return true
-      }else{
+      }
+      else{
         return false
       }
     }
@@ -63,7 +64,7 @@ export default {
       this.numCorrect= 0;
       this.numTotal= 0;
     },
-   async fetchQuestions(type){
+    async fetchQuestions(type){
     await fetch(`https://opentdb.com/api.php?amount=10&category=${type}&type=multiple`, {
       method: 'get'
     })
